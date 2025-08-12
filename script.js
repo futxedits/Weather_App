@@ -1,6 +1,6 @@
 class WeatherStation {
     constructor() {
-        this.apiKey = 'your_openweathermap_api_key'; 
+        this.apiKey = '8c7e43457708ad179e50dff631c08d86'; 
         this.baseUrl = 'https://api.openweathermap.org/data/2.5';
         this.geoUrl = 'https://api.openweathermap.org/geo/1.0';
         this.currentWeatherData = null;
@@ -551,4 +551,5 @@ rippleStyles.textContent = `
         }
     }
 `;
+
 document.head.appendChild(rippleStyles);
