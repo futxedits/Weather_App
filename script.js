@@ -382,8 +382,8 @@ class WeatherStation {
             this.hideLoading();
             
             if (!this.demoNoticeShown) {
-                this.showNotice('Demo mode: Add your OpenWeatherMap API key to get real data');
-                this.demoNoticeShown = true;
+            this.displayWeatherData(demoData, city);
+            this.hideLoading();
             }
         }, 1000);
     }
@@ -553,4 +553,5 @@ rippleStyles.textContent = `
 `;
 
 document.head.appendChild(rippleStyles);
+
 
