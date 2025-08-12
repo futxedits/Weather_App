@@ -553,3 +553,4 @@ rippleStyles.textContent = `
 `;
 
 document.head.appendChild(rippleStyles);
+
