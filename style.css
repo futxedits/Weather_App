@@ -7,23 +7,29 @@
 }
 
 :root {
-    --primary-blue: #0066ff;
-    --secondary-blue: #004cd9;
-    --accent-orange: #ff6b35;
-    --text-dark: #1a1a1a;
+    --primary-blue: #3b82f6;
+    --secondary-blue: #1e40af;
+    --accent-cyan: #06b6d4;
+    --accent-purple: #8b5cf6;
+    --text-dark: #000000;
     --text-light: #ffffff;
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.1);
-    --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.3);
+    --text-gray: #9ca3af;
+    --bg-primary: #000000;
+    --bg-secondary: #111111;
+    --bg-card: #1a1a1a;
+    --glass-bg: rgba(26, 26, 26, 0.8);
+    --glass-border: rgba(75, 85, 99, 0.3);
+    --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background: var(--bg-primary);
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    color: var(--text-light);
 }
 
 .animated-bg {
@@ -33,15 +39,13 @@ body {
     width: 100%;
     height: 100%;
     z-index: -2;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-    animation: gradientShift 10s ease infinite;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 30%, #111111 70%, #000000 100%);
+    animation: subtleShift 15s ease infinite;
 }
 
-@keyframes gradientShift {
-    0%, 100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); }
-    25% { background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%); }
-    50% { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 50%, #667eea 100%); }
-    75% { background: linear-gradient(135deg, #fa709a 0%, #fee140 50%, #667eea 100%); }
+@keyframes subtleShift {
+    0%, 100% { background: linear-gradient(135deg, #000000 0%, #1a1a1a 30%, #111111 70%, #000000 100%); }
+    50% { background: linear-gradient(135deg, #111111 0%, #000000 30%, #1a1a1a 70%, #111111 100%); }
 }
 
 .floating-elements {
@@ -56,9 +60,10 @@ body {
 
 .floating-element {
     position: absolute;
-    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
     border-radius: 50%;
-    animation: float 15s infinite linear;
+    animation: float 20s infinite linear;
+    border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .floating-element:nth-child(1) {
@@ -72,14 +77,14 @@ body {
     width: 60px;
     height: 60px;
     left: 50%;
-    animation-delay: -5s;
+    animation-delay: -7s;
 }
 
 .floating-element:nth-child(3) {
     width: 100px;
     height: 100px;
     left: 80%;
-    animation-delay: -10s;
+    animation-delay: -14s;
 }
 
 @keyframes float {
@@ -88,10 +93,10 @@ body {
         opacity: 0;
     }
     10% {
-        opacity: 1;
+        opacity: 0.6;
     }
     90% {
-        opacity: 1;
+        opacity: 0.6;
     }
     100% {
         transform: translateY(-100px) rotate(360deg);
@@ -126,12 +131,12 @@ body {
 .header h1 {
     font-size: 4em;
     font-weight: 800;
-    background: linear-gradient(135deg, #ffffff, #e0e7ff, #c7d2fe);
+    background: linear-gradient(135deg, #ffffff, #3b82f6, #06b6d4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 10px;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
     position: relative;
 }
 
@@ -142,6 +147,7 @@ body {
     right: -60px;
     font-size: 0.7em;
     animation: bounce 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
 }
 
 @keyframes bounce {
@@ -151,7 +157,7 @@ body {
 }
 
 .header p {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-gray);
     font-size: 1.2em;
     font-weight: 300;
 }
@@ -182,20 +188,25 @@ body {
 .search-input {
     flex: 1;
     padding: 18px 25px;
-    border: none;
+    border: 1px solid rgba(75, 85, 99, 0.3);
     border-radius: 50px;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--bg-card);
+    color: var(--text-light);
     font-size: 16px;
     font-weight: 400;
     outline: none;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.search-input::placeholder {
+    color: var(--text-gray);
 }
 
 .search-input:focus {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+    border-color: var(--primary-blue);
 }
 
 .btn {
@@ -213,18 +224,18 @@ body {
 .btn-primary {
     background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
     color: white;
-    box-shadow: 0 8px 25px rgba(0, 102, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
 }
 
 .btn-secondary {
-    background: linear-gradient(135deg, var(--accent-orange), #ff8a65);
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
     color: white;
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
 }
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
 
 .btn::before {
@@ -234,7 +245,7 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
     transition: left 0.6s;
 }
 
@@ -251,10 +262,10 @@ body {
 
 .quick-city {
     padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
+    background: rgba(75, 85, 99, 0.2);
+    border: 1px solid rgba(75, 85, 99, 0.3);
     border-radius: 25px;
-    color: white;
+    color: var(--text-light);
     font-size: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -262,8 +273,10 @@ body {
 }
 
 .quick-city:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(59, 130, 246, 0.3);
+    border-color: var(--primary-blue);
     transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
 }
 
 .weather-dashboard {
@@ -303,7 +316,7 @@ body {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange), var(--primary-blue));
+    background: linear-gradient(90deg, var(--primary-blue), var(--accent-cyan), var(--accent-purple));
     border-radius: 30px 30px 0 0;
 }
 
@@ -319,11 +332,11 @@ body {
     font-weight: 700;
     color: white;
     margin-bottom: 5px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .location-info .date-time {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-gray);
     font-size: 1.1em;
     font-weight: 300;
 }
@@ -336,7 +349,7 @@ body {
     font-size: 5em;
     font-weight: 800;
     color: white;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     line-height: 1;
     display: flex;
     align-items: flex-start;
@@ -346,6 +359,7 @@ body {
 .weather-icon-main {
     font-size: 1.2em;
     animation: pulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
 }
 
 @keyframes pulse {
@@ -355,7 +369,7 @@ body {
 
 .weather-description {
     font-size: 1.3em;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-gray);
     font-weight: 500;
     text-transform: capitalize;
     margin: 20px 0;
@@ -369,24 +383,27 @@ body {
 }
 
 .stat-item {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(26, 26, 26, 0.8);
     padding: 20px;
     border-radius: 20px;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(75, 85, 99, 0.3);
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .stat-item:hover {
     transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: rgba(59, 130, 246, 0.1);
+    border-color: var(--primary-blue);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .stat-icon {
     font-size: 2.5em;
     margin-bottom: 10px;
     display: block;
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3));
 }
 
 .stat-value {
@@ -398,7 +415,7 @@ body {
 
 .stat-label {
     font-size: 0.9em;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-gray);
     font-weight: 400;
 }
 
@@ -452,23 +469,26 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(26, 26, 26, 0.6);
+    border: 1px solid rgba(75, 85, 99, 0.2);
     border-radius: 15px;
     transition: all 0.3s ease;
 }
 
 .hourly-item:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(59, 130, 246, 0.1);
+    border-color: var(--primary-blue);
     transform: translateX(5px);
 }
 
 .hourly-time {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-gray);
     font-weight: 500;
 }
 
 .hourly-icon {
     font-size: 1.5em;
+    filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.3));
 }
 
 .hourly-temp {
@@ -482,7 +502,8 @@ body {
     align-items: center;
     gap: 15px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(26, 26, 26, 0.6);
+    border: 1px solid rgba(75, 85, 99, 0.2);
     border-radius: 15px;
     margin-bottom: 15px;
 }
@@ -497,11 +518,21 @@ body {
     font-size: 1.2em;
     font-weight: 700;
     color: white;
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-.aqi-good { background: linear-gradient(135deg, #4ade80, #16a34a); }
-.aqi-moderate { background: linear-gradient(135deg, #facc15, #eab308); }
-.aqi-poor { background: linear-gradient(135deg, #f97316, #ea580c); }
+.aqi-good { 
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+.aqi-moderate { 
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+.aqi-poor { 
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
 
 .aqi-info h4 {
     color: white;
@@ -510,7 +541,7 @@ body {
 }
 
 .aqi-info p {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-gray);
     font-size: 0.9em;
 }
 
@@ -531,11 +562,11 @@ body {
 }
 
 .forecast-day {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(26, 26, 26, 0.8);
     padding: 25px 20px;
     border-radius: 20px;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(75, 85, 99, 0.3);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
@@ -548,15 +579,16 @@ body {
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+    background: linear-gradient(90deg, var(--primary-blue), var(--accent-cyan));
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
 
 .forecast-day:hover {
     transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    background: rgba(59, 130, 246, 0.1);
+    border-color: var(--primary-blue);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
 
 .forecast-day:hover::before {
@@ -564,7 +596,7 @@ body {
 }
 
 .day-name {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-light);
     font-size: 1.1em;
     font-weight: 600;
     margin-bottom: 15px;
@@ -574,6 +606,7 @@ body {
     font-size: 3em;
     margin: 15px 0;
     display: block;
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3));
 }
 
 .day-temps {
@@ -590,7 +623,7 @@ body {
 }
 
 .temp-low {
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-gray);
     font-size: 1.1em;
     font-weight: 400;
 }
@@ -602,6 +635,7 @@ body {
     font-size: 1.3em;
     background: var(--glass-bg);
     backdrop-filter: blur(30px);
+    border: 1px solid var(--glass-border);
     border-radius: 25px;
     margin: 40px 0;
 }
@@ -609,8 +643,8 @@ body {
 .loading-spinner {
     width: 50px;
     height: 50px;
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    border-top: 4px solid white;
+    border: 4px solid rgba(75, 85, 99, 0.3);
+    border-top: 4px solid var(--primary-blue);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin: 20px auto;
@@ -622,8 +656,8 @@ body {
 }
 
 .error {
-    background: linear-gradient(135deg, rgba(255, 107, 107, 0.3), rgba(255, 87, 51, 0.3));
-    border: 2px solid rgba(255, 107, 107, 0.5);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.2));
+    border: 2px solid rgba(239, 68, 68, 0.4);
     backdrop-filter: blur(30px);
     color: white;
     padding: 30px;
@@ -693,15 +727,15 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(26, 26, 26, 0.8);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(75, 85, 99, 0.6);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(59, 130, 246, 0.8);
 }
